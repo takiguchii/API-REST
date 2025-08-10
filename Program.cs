@@ -10,7 +10,7 @@ builder.Services.AddSwaggerGen();
 
 
 //adicionando o nosso DbContext, usando a string de conexao
-var connectionString = "Server=Local;User Id=root;Password=170918;Database=Anime_db";
+var connectionString = "Server=Localhost;User Id=root;Password=170918;Database=anime_db";
 builder.Services.AddDbContext<AppDbContext>(options=>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
