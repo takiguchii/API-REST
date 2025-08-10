@@ -1,43 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ConectDatabase;
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
-namespace ConectDatabase.Data;
-
-public partial class AppDbContext : DbContext
+namespace ConectDatabase.Data
 {
-    public AppDbContext()
+    public partial class AppDbContext : DbContext
     {
-    }
-
-    public AppDbContext(DbContextOptions<AppDbContext> options)
-        : base(options)
-    {
-    }
-
-    public virtual DbSet<Anime> Animes { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;user id=root;password=170918;database=anime_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.42-mysql"));
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder
-            .UseCollation("utf8mb4_0900_ai_ci")
-            .HasCharSet("utf8mb4");
-
-        modelBuilder.Entity<Anime>(entity =>
+        // Construtor que recebe a configuração do Program.cs
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+            : base(options)
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
+        }
 
-            entity.Property(e => e.DataLancamento).HasColumnType("datetime");
-            entity.Property(e => e.Nome).HasMaxLength(255);
-        });
+        // Esta propriedade representa a tabela "Animes" no banco de dados
+        public DbSet<Anime> Animes { get; set; }
 
-        OnModelCreatingPartial(modelBuilder);
+        // Esta é a nova propriedade que representa a tabela "Generos"
+        public DbSet<Genero> Generos { get; set; }
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
