@@ -8,7 +8,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Adiciona o DbContext, usando a string de conexão.
-var connectionString = "Server=localhost;User Id=root;Password=sua_senha;Database=anime_db";
+var connectionString = "Server=localhost;User Id=root;Password=170918;Database=anime_db";
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 

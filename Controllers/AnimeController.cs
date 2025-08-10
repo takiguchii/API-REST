@@ -29,6 +29,19 @@ namespace ConnectDatabase.Controllers
             _context.SaveChanges();
             return CreatedAtAction(nameof(Get), new { id = novoAnime.Id }, novoAnime);
         }
+
+        [HttpDelete]
+        public IActionResult DeleteAnime(int id)
+        {
+            var anime = _context.Animes.Find(id);
+            if (anime == null)
+            {
+                return NotFound();
+            }
+            _context.Animes.Remove(anime);
+            _context.SaveChanges();
+            return NoContent();
+        }
     }
 }
 
