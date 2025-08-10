@@ -1,0 +1,13 @@
+## Build folders
+bin/
+obj/
+
+## Rider
+.idea/
+
+## Visual Studio
+.vs/
+
+## NuGet
+*.nupkg
+.nuget/
