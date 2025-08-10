@@ -12,6 +12,9 @@ var connectionString = "Server=localhost;User Id=root;Password=sua_senha;Databas
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
+// Adiciona o serviço de controllers.
+builder.Services.AddControllers();
+
 // Adiciona o serviço de autorização.
 builder.Services.AddAuthorization();
 
@@ -28,6 +31,8 @@ app.UseHttpsRedirection();
 
 // Adiciona o middleware de autorização.
 app.UseAuthorization();
+
+// Mapeia os controllers para as rotas da API.
 app.MapControllers();
 
 app.Run();
